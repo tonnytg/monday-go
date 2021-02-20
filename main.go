@@ -2,30 +2,36 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 )
 
+type Board struct {
+	Data struct {
+		Boards []struct {
+			Name string `json:"name"`
+			ID   string `json:"id"`
+		} `json:"boards"`
+	} `json:"data"`
+	AccountID int `json:"account_id"`
+}
+
 func main() {
 	// Set your API Key here, your can get on account settings
-	apiKey := "XXXXXX"
+	apiKey := "XXXXX"
 	// URL API
 	url := "https://api.monday.com/v2"
-	fmt.Println("URL:>", url)
 
 	var jsonStr = []byte(`{"query":"{ boards (limit:5) {name id} }"}`)
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
-	//req.Header.Set("X-Custom-Header", "query")
-	//req.Header.Set("Query", "{ boards (limit:5) {name id} }")
 	if err != nil {
 		panic(err)
 	}
 
-	req.Header.Set("authorization", apiKey)
-	if req == nil {
+	if req.Header.Set("authorization", apiKey); req == nil {
 		fmt.Printf("Not value to work, review your URL and Headears: %v", req)
-
 	} else {
 		req.Header.Set("Content-Type", "application/json")
 
@@ -36,12 +42,20 @@ func main() {
 		}
 
 		//Print status and header
-		fmt.Println("response Status:", resp.Status)
-		fmt.Println("response Headers:", req.Header)
+		fmt.Println("Status:", resp.Status)
+		//fmt.Println("response Headers:", req.Header)
 		body, _ := ioutil.ReadAll(resp.Body)
 
-		//Close connection and test
-		fmt.Println("response Body:", string(body))
+		// create a data container
+		var board Board
+
+		// unmarshal `data`
+		json.Unmarshal( body, &board )
+		fmt.Printf("\nBoards:\n")
+		for _, value := range(board.Data.Boards) {
+			fmt.Println(value)
+		}
+
 		if err := resp.Body.Close(); err != nil {
 			panic(err)
 		}
