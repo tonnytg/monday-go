@@ -12,4 +12,4 @@ This is a CLI for Monday write on GoLan!
 4. Execute monday-go --help 
 
 ### Images
-<img src="https://github.com/tonnytg/monday-go/blob/main/demo-monday-go.png" width="450" height="320">
+<img src="https://github.com/tonnytg/monday-go/blob/main/demo-monday-go.png" width="650" height="320">
