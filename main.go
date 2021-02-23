@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 )
 
 type Board struct {
@@ -18,9 +19,9 @@ type Board struct {
 	AccountID int `json:"account_id"`
 }
 
-func main() {
-	// Set your API Key here, your can get on account settings
-	apiKey := "XXXXX"
+func GetBoards(){
+	// export your API Token with ENV KEYMONDAY
+	apiKey := os.Getenv("KEYMONDAY")
 	// URL API
 	url := "https://api.monday.com/v2"
 
@@ -48,7 +49,6 @@ func main() {
 
 		// create a data container
 		var board Board
-
 		// unmarshal `data`
 		json.Unmarshal( body, &board )
 		fmt.Printf("\nBoards:\n")
@@ -60,4 +60,8 @@ func main() {
 			panic(err)
 		}
 	}
+}
+
+func main() {
+	GetBoards()
 }
