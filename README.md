@@ -10,3 +10,6 @@ This is a CLI for Monday write on GoLan!
 ```export KEYMONDAY="XXXXXXXXXX"```
 
 4. Execute monday-go --help 
+
+### Images
+<img src="https://github.com/tonnytg/monday-go/blob/main/demo-monday-go.png" width="300" height="320">
