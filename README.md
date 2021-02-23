@@ -1,10 +1,12 @@
 # monday-go
-Create a app to update Monday boards
+This is a CLI for Monday write on GoLan!
 
+## How to use?
+1. Access your account on Monday
 
-**Links:**
+2. Get API Token
 
-- https://monday.com/developers/v2#using-grpahql-section
-- https://monday.com/developers/v2/try-it-yourself
-- https://jsonformatter.curiousconcept.com/#
-- https://mholt.github.io/json-to-go/
+3. Export variavel `KEYMONDAY`
+```export KEYMONDAY="XXXXXXXXXX"````
+
+4. Execute monday-go --help 
