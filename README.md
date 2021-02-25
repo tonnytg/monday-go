@@ -6,7 +6,7 @@ This is a CLI for Monday write on GoLan!
 
 2. Get API Token
 
-3. Export variavel `KEYMONDAY`
+3. Export env `KEYMONDAY`
 ```export KEYMONDAY="XXXXXXXXXX"```
 
 4. Execute monday-go --help 
